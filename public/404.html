@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <title>Provisión</title>
+    <script>
+      // GitHub Pages responde 404 en rutas como /pedidos/123: guardamos la ruta y abrimos la tienda,
+      // que la recupera al cargar (ver src/main.tsx).
+      sessionStorage.setItem('provision.ruta', location.pathname + location.search + location.hash);
+      var base = location.pathname.split('/').slice(0, 2).join('/') + '/';
+      location.replace(location.hostname.endsWith('github.io') ? base : '/');
+    </script>
+  </head>
+  <body></body>
+</html>

@@ -1,0 +1,17 @@
+# Alternativa a GitHub Pages: la tienda como sitio estático en Render.
+# En Render: New → Blueprint → elige este repo.
+services:
+  - type: web
+    name: provision-tienda
+    runtime: static
+    branch: main
+    buildCommand: npm ci && npm run build
+    staticPublishPath: dist
+    envVars:
+      - key: VITE_API_URL
+        value: https://provision-backend-ib50.onrender.com/api/v1
+    # Todas las rutas (/carrito, /pedidos/…) las resuelve la tienda
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
