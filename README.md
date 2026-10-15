@@ -29,22 +29,28 @@ La dirección de la API se define en `.env.development`, `.env.desarrollo` y `.e
 
 En el backend, `CORS_ORIGIN` debe incluir la dirección de la tienda (`http://localhost:5173` en local) y `TIENDA_URL` debe apuntar a ella: es adonde Stripe devuelve al cliente después de pagar.
 
-## Publicación
+## Publicación en Render
 
-Cada cambio en `main` se revisa, se prueba y se publica solo con GitHub Actions (`.github/workflows/publicar.yml`) en la rama `gh-pages`:
+La tienda se publica como **sitio estático en Render** con `render.yaml`. Cada cambio en `main` se publica solo, y GitHub Actions revisa el código y corre las pruebas en cada cambio.
 
-**https://mastercloud06.github.io/provision-frontend/**
+**Crear el sitio (una sola vez):** en Render, *New → Blueprint* → elige este repo → *Apply*. Queda en `https://provision-tienda.onrender.com` (si ese nombre está tomado, Render agrega unas letras al final).
 
-La primera vez, en el repo: *Settings → Pages → Source: Deploy from a branch → `gh-pages` / root*. (GitHub Pages en repos privados requiere un plan de pago; si el repo es privado y gratuito, usa Render.)
+Si prefieres crearlo a mano (*New → Static Site*):
 
-Luego, en el backend (Render → *Environment*):
+| Campo | Valor |
+|---|---|
+| Build Command | `npm ci && npm run build` |
+| Publish Directory | `dist` |
+| Redirects/Rewrites | Source `/*` → Destination `/index.html` → Action **Rewrite** |
+
+**Luego, en el backend** (Render → servicio del backend → *Environment*), con la dirección que te dio Render:
 
 | Variable | Valor |
 |---|---|
-| `CORS_ORIGIN` | agrega `https://mastercloud06.github.io` (separado por coma) |
-| `TIENDA_URL` | `https://mastercloud06.github.io/provision-frontend` |
+| `CORS_ORIGIN` | agrega `https://provision-tienda.onrender.com` (separado por coma) |
+| `TIENDA_URL` | `https://provision-tienda.onrender.com` |
 
-**Alternativa: Render.** `render.yaml` publica la tienda como sitio estático (*New → Blueprint*). En ese caso usa su dirección `https://….onrender.com` en `CORS_ORIGIN` y `TIENDA_URL`.
+`CORS_ORIGIN` autoriza a la tienda a pedirle datos al backend; `TIENDA_URL` es adonde Stripe devuelve al cliente después de pagar.
 
 ## Pago con Stripe
 
@@ -66,7 +72,6 @@ src/
   paginas/      # inicio, catálogo, producto, carrito, finalizar, pedido, mis pedidos, cuenta, acceso
   util/         # dinero (centavos → Bs), fechas, nombres de tipos y estados
   estilos.css   # todo el diseño
-public/404.html # para que las rutas funcionen en GitHub Pages
 ```
 
 ## Diseño

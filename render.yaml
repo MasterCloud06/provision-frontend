@@ -1,5 +1,5 @@
-# Alternativa a GitHub Pages: la tienda como sitio estático en Render.
-# En Render: New → Blueprint → elige este repo.
+# La tienda como sitio estático en Render.
+# En Render: New → Blueprint → elige este repo. Cada cambio en main se publica solo.
 services:
   - type: web
     name: provision-tienda
@@ -7,6 +7,7 @@ services:
     branch: main
     buildCommand: npm ci && npm run build
     staticPublishPath: dist
+    # La API del servidor de desarrollo (también está en .env.production)
     envVars:
       - key: VITE_API_URL
         value: https://provision-backend-ib50.onrender.com/api/v1
@@ -15,3 +16,8 @@ services:
       - type: rewrite
         source: /*
         destination: /index.html
+    headers:
+      # Los archivos compilados llevan su versión en el nombre: se pueden guardar en caché por un año
+      - path: /assets/*
+        name: Cache-Control
+        value: public, max-age=31536000, immutable

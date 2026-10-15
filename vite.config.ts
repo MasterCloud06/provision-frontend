@@ -2,7 +2,7 @@ import react from '@vitejs/plugin-react';
 import { loadEnv } from 'vite';
 import { defineConfig } from 'vitest/config';
 
-// VITE_BASE: carpeta donde se publica la tienda. En GitHub Pages es /provision-frontend/.
+// VITE_BASE: carpeta donde se publica la tienda (en Render es la raíz, /).
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, '.', 'VITE_');
   return {
