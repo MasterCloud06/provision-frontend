@@ -9,7 +9,7 @@ La tienda en línea de Provisión para los **clientes** de la óptica: buscan pr
 - **Ver el catálogo** sin cuenta: búsqueda, filtros por tipo, marca, para quién (mujer, hombre, niños), precio y stock; orden por novedad o precio.
 - **Ficha del producto**: precio, disponibilidad, medidas de la montura en notación óptica (`52□18 140`), ficha técnica y relacionados.
 - **Carrito**: se arma sin cuenta (queda en el navegador) y al ingresar se junta con el de su cuenta, que se guarda en el servidor.
-- **Cuenta**: registro, ingreso, datos (teléfono, dirección, CI, NIT) y cambio de contraseña.
+- **Cuenta**: registro, ingreso, datos (teléfono, dirección, CI, NIT), cambio de contraseña y **recuperarla por correo** con un enlace de un solo uso. Cambiar o recuperar la contraseña cierra la sesión en los demás dispositivos.
 - **Comprar**: retiro en la óptica (gratis) o envío a domicilio; pago con **tarjeta en Stripe** o **al retirar**. Los productos quedan reservados mientras paga.
 - **Reservar examen de la vista**: días y turnos libres (según el horario de la óptica), motivo y teléfono; ver y cancelar sus citas. Se puede mirar la agenda sin cuenta; para reservar hay que ingresar.
 - **Mis pedidos**: estado de cada pedido paso a paso, volver a intentar el pago o cancelarlo si aún no se pagó.

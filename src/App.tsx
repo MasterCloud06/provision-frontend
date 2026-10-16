@@ -1,6 +1,6 @@
 import { Route, Routes } from 'react-router';
 import { Marco } from './componentes/Marco';
-import { Ingresar, Registrarse } from './paginas/Acceso';
+import { Ingresar, Recuperar, Registrarse, Restablecer } from './paginas/Acceso';
 import { Carrito } from './paginas/Carrito';
 import { Citas } from './paginas/Citas';
 import { Catalogo } from './paginas/Catalogo';
@@ -22,6 +22,8 @@ export function App() {
         <Route path="carrito" element={<Carrito />} />
         <Route path="ingresar" element={<Ingresar />} />
         <Route path="registrarse" element={<Registrarse />} />
+        <Route path="recuperar" element={<Recuperar />} />
+        <Route path="restablecer" element={<Restablecer />} />
         <Route path="ayuda" element={<Ayuda />} />
         <Route path="citas" element={<Citas />} />
         <Route element={<RequiereSesion />}>

@@ -11,6 +11,8 @@ type ValorSesion = {
   registrarse: (d: DatosRegistro) => Promise<Cuenta>;
   salir: () => void;
   actualizar: (c: Cuenta) => void;
+  /** Inicia la sesión con un token ya emitido (p. ej. al crear una contraseña nueva). */
+  entrarCon: (tk: string, c: Cuenta) => void;
 };
 
 const Contexto = createContext<ValorSesion | null>(null);
@@ -41,6 +43,10 @@ export function ProveedorSesion({ children }: { children: ReactNode }) {
       cargando,
       salir,
       actualizar: setCuenta,
+      entrarCon(tk, c) {
+        token.guardar(tk);
+        setCuenta(c);
+      },
       async ingresar(email, password) {
         const s = await tienda.ingresar(email, password);
         token.guardar(s.token);

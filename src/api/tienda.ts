@@ -36,7 +36,10 @@ export const tienda = {
   cuenta: () => pedir<Cuenta>('/tienda/cuenta'),
   actualizarCuenta: (d: Partial<Pick<Cuenta, 'nombre' | 'telefono' | 'ci' | 'nit' | 'direccion'>>) =>
     pedir<Cuenta>('/tienda/cuenta', { metodo: 'PATCH', cuerpo: d }),
-  cambiarPassword: (actual: string, nueva: string) => pedir<void>('/tienda/cuenta/password', { metodo: 'POST', cuerpo: { actual, nueva } }),
+  /** Devuelve un token nuevo: las sesiones de otros dispositivos se cierran. */
+  cambiarPassword: (actual: string, nueva: string) => pedir<{ token: string }>('/tienda/cuenta/password', { metodo: 'POST', cuerpo: { actual, nueva } }),
+  recuperar: (email: string) => pedir<{ mensaje: string }>('/tienda/auth/recuperar', { metodo: 'POST', cuerpo: { email } }),
+  restablecer: (token: string, password: string) => pedir<Sesion>('/tienda/auth/restablecer', { metodo: 'POST', cuerpo: { token, password } }),
 
   carrito: () => pedir<Carrito>('/tienda/carrito'),
   fijarCantidad: (productoId: string, cantidad: number) => pedir<Carrito>(`/tienda/carrito/${productoId}`, { metodo: 'PUT', cuerpo: { cantidad } }),

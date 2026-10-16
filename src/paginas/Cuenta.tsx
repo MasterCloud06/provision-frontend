@@ -1,5 +1,6 @@
 import { useState, type FormEvent } from 'react';
 import { Link, useNavigate } from 'react-router';
+import { token } from '../api/cliente';
 import { tienda } from '../api/tienda';
 import { Campo, erroresDe, MensajeError } from '../componentes/Basicos';
 import { useAvisos } from '../estado/Avisos';
@@ -63,9 +64,10 @@ function Contrasena() {
     setGuardando(true);
     setError(null);
     try {
-      await tienda.cambiarPassword(d.actual, d.nueva);
+      const r = await tienda.cambiarPassword(d.actual, d.nueva);
+      token.guardar(r.token);
       setD({ actual: '', nueva: '', repetir: '' });
-      avisar('Contraseña cambiada');
+      avisar('Contraseña cambiada. Si tenías la sesión abierta en otro dispositivo, se cerró.');
     } catch (err) {
       setError(err);
     } finally {

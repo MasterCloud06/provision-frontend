@@ -41,6 +41,8 @@ export type InfoTienda = {
   sucursal: { nombre: string; direccion: string | null; telefono: string | null };
   costoEnvio: Centavos;
   pagoEnLinea: boolean;
+  /** Si se puede recuperar la contraseña por correo. */
+  recuperacionPorCorreo?: boolean;
   minutosReserva: number;
   diasRetiro: number;
   categorias: { tipo: TipoProducto; cantidad: number }[];
