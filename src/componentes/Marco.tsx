@@ -48,6 +48,7 @@ const SECCIONES = [
   { a: '/catalogo?tipo=GAFAS_SOL', texto: 'Gafas de sol' },
   { a: '/catalogo?tipo=LENTE_CONTACTO', texto: 'Lentes de contacto' },
   { a: '/catalogo?tipo=LIQUIDO', texto: 'Soluciones' },
+  { a: '/citas', texto: 'Reservar examen' },
 ];
 
 function Encabezado() {
@@ -147,6 +148,9 @@ function Pie() {
           <ul>
             <li>
               <Link to="/pedidos">Mis pedidos</Link>
+            </li>
+            <li>
+              <Link to="/citas">Reservar examen de la vista</Link>
             </li>
             <li>
               <Link to="/cuenta">Mi cuenta</Link>

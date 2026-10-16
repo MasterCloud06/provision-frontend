@@ -101,6 +101,9 @@ export function Cuenta() {
           <Link to="/pedidos" className="boton boton-secundario">
             Mis pedidos
           </Link>
+          <Link to="/citas" className="boton boton-secundario">
+            Mis citas
+          </Link>
           <button
             type="button"
             className="boton boton-secundario"

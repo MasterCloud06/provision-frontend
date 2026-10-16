@@ -127,3 +127,24 @@ export type Pedido = {
     tipo: TipoProducto;
   }[];
 };
+
+export type MotivoCita = 'EXAMEN_VISTA' | 'CONTROL' | 'LENTES_CONTACTO' | 'AJUSTE' | 'OTRO';
+export type EstadoCita = 'PENDIENTE' | 'CONFIRMADA' | 'ATENDIDA' | 'NO_ASISTIO' | 'CANCELADA';
+
+export type DiaAgenda = { fecha: string; turnos: { hora: string; libre: boolean }[] };
+export type Disponibilidad = { dias: DiaAgenda[]; duracion: number; motivos: Record<MotivoCita, string> };
+
+export type Cita = {
+  id: string;
+  fecha: string;
+  hora: string;
+  duracion: number;
+  motivo: MotivoCita;
+  motivoTexto: string;
+  estado: EstadoCita;
+  nombreContacto: string;
+  telefono: string;
+  notas: string | null;
+  canceladaMotivo: string | null;
+  creadoEn: string;
+};

@@ -1601,6 +1601,7 @@ select:focus {
 }
 
 .cuenta-acciones {
+  flex-wrap: wrap;
   display: flex;
   gap: 0.5rem;
 }
@@ -1797,4 +1798,135 @@ select:focus {
   border-top: 1px solid #3a4652;
   font-size: 0.875rem;
   color: #aab6bf;
+}
+
+/* ───────────── Citas ───────────── */
+
+.angosto-ancho {
+  max-width: 880px;
+}
+
+.intro-citas {
+  max-width: 60ch;
+  margin-bottom: 1.5rem;
+}
+
+.reserva {
+  display: grid;
+  gap: 2rem;
+}
+
+.dias {
+  display: flex;
+  gap: 0.5rem;
+  overflow-x: auto;
+  padding: 2px 2px 0.5rem;
+  scroll-snap-type: x proximity;
+}
+
+.dia {
+  flex: none;
+  scroll-snap-align: start;
+  display: grid;
+  justify-items: center;
+  gap: 0.1rem;
+  width: 4.5rem;
+  padding: 0.6rem 0.25rem;
+  border: 1.5px solid var(--linea);
+  border-radius: var(--radio-panel);
+  background: var(--blanco);
+  cursor: pointer;
+}
+
+.dia:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.dia[aria-checked='true'] {
+  background: var(--tinta);
+  border-color: var(--tinta);
+  color: var(--blanco);
+}
+
+.dia-semana,
+.dia-mes {
+  font-size: 0.8125rem;
+}
+
+.dia-numero {
+  font-size: 1.5rem;
+  font-weight: 800;
+  line-height: 1.1;
+}
+
+.turnos-titulo {
+  margin: 0.25rem 0 0.4rem;
+  color: var(--tinta-suave);
+  font-size: 0.9375rem;
+}
+
+.turnos {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(5.25rem, 1fr));
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.turno {
+  min-height: 44px;
+  border: 1.5px solid var(--linea);
+  border-radius: var(--radio);
+  background: var(--blanco);
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.turno:hover:not(:disabled) {
+  border-color: var(--cristal);
+}
+
+.turno:disabled {
+  background: var(--linea-suave);
+  color: var(--tinta-suave);
+  text-decoration: line-through;
+  cursor: not-allowed;
+}
+
+.turno[aria-checked='true'] {
+  background: var(--cristal);
+  border-color: var(--cristal);
+  color: var(--blanco);
+}
+
+.campo select {
+  width: 100%;
+  min-height: 46px;
+  padding: 0.55rem 0.75rem;
+  border: 1.5px solid var(--linea);
+  border-radius: var(--radio);
+  background: var(--blanco);
+}
+
+.fila-cita {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 0.25rem 1rem;
+  align-items: center;
+  padding: 1rem 0.25rem;
+  border-bottom: 1px solid var(--linea);
+}
+
+.fila-cita p {
+  margin: 0;
+}
+
+.fila-cita .enlace {
+  grid-column: 2;
+  justify-self: end;
+}
+
+.insignia-pagado {
+  background: var(--cristal-claro);
+  color: var(--cristal-oscuro);
 }

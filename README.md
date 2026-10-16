@@ -11,6 +11,7 @@ La tienda en línea de Provisión para los **clientes** de la óptica: buscan pr
 - **Carrito**: se arma sin cuenta (queda en el navegador) y al ingresar se junta con el de su cuenta, que se guarda en el servidor.
 - **Cuenta**: registro, ingreso, datos (teléfono, dirección, CI, NIT) y cambio de contraseña.
 - **Comprar**: retiro en la óptica (gratis) o envío a domicilio; pago con **tarjeta en Stripe** o **al retirar**. Los productos quedan reservados mientras paga.
+- **Reservar examen de la vista**: días y turnos libres (según el horario de la óptica), motivo y teléfono; ver y cancelar sus citas. Se puede mirar la agenda sin cuenta; para reservar hay que ingresar.
 - **Mis pedidos**: estado de cada pedido paso a paso, volver a intentar el pago o cancelarlo si aún no se pagó.
 
 Si Stripe todavía no está configurado en el backend, la tienda lo detecta y solo ofrece *pagar al retirar*.

@@ -2,6 +2,7 @@ import { Route, Routes } from 'react-router';
 import { Marco } from './componentes/Marco';
 import { Ingresar, Registrarse } from './paginas/Acceso';
 import { Carrito } from './paginas/Carrito';
+import { Citas } from './paginas/Citas';
 import { Catalogo } from './paginas/Catalogo';
 import { Cuenta } from './paginas/Cuenta';
 import { Finalizar } from './paginas/Finalizar';
@@ -22,6 +23,7 @@ export function App() {
         <Route path="ingresar" element={<Ingresar />} />
         <Route path="registrarse" element={<Registrarse />} />
         <Route path="ayuda" element={<Ayuda />} />
+        <Route path="citas" element={<Citas />} />
         <Route element={<RequiereSesion />}>
           <Route path="finalizar" element={<Finalizar />} />
           <Route path="pedidos" element={<MisPedidos />} />

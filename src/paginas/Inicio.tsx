@@ -44,8 +44,8 @@ function Cartilla() {
         <Link to="/catalogo?tipo=MONTURA" className="boton boton-primario">
           Ver monturas
         </Link>
-        <Link to="/catalogo" className="boton boton-secundario">
-          Todo el catálogo
+        <Link to="/citas" className="boton boton-secundario">
+          Reservar examen
         </Link>
       </div>
     </section>

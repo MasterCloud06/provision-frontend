@@ -1,5 +1,5 @@
 import { pedir, qs } from './cliente';
-import type { Carrito, Cuenta, Entrega, InfoTienda, MetodoPago, Pagina, Pedido, PedidoResumen, Producto, ProductoDetalle, TipoProducto, Genero } from './tipos';
+import type { Cita, Disponibilidad, MotivoCita, Carrito, Cuenta, Entrega, InfoTienda, MetodoPago, Pagina, Pedido, PedidoResumen, Producto, ProductoDetalle, TipoProducto, Genero } from './tipos';
 
 export type FiltrosCatalogo = {
   q?: string;
@@ -50,5 +50,10 @@ export const tienda = {
   pedido: (id: string) => pedir<Pedido>(`/tienda/pedidos/${id}`),
   verificarPago: (id: string) => pedir<Pedido>(`/tienda/pedidos/${id}/verificar`, { metodo: 'POST' }),
   pagar: (id: string) => pedir<{ urlPago: string }>(`/tienda/pedidos/${id}/pagar`, { metodo: 'POST' }),
+  disponibilidad: (desde?: string, dias = 14) => pedir<Disponibilidad>(`/tienda/citas/disponibilidad${qs({ desde, dias })}`),
+  citas: () => pedir<Cita[]>('/tienda/citas'),
+  reservarCita: (d: { fecha: string; hora: string; motivo: MotivoCita; telefono: string; nombreContacto?: string; notas?: string }) =>
+    pedir<Cita>('/tienda/citas', { metodo: 'POST', cuerpo: d }),
+  cancelarCita: (id: string) => pedir<Cita>(`/tienda/citas/${id}/cancelar`, { metodo: 'POST' }),
   cancelar: (id: string) => pedir<Pedido>(`/tienda/pedidos/${id}/cancelar`, { metodo: 'POST' }),
 };
