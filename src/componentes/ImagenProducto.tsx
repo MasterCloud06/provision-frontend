@@ -52,10 +52,28 @@ const DIBUJOS: Record<TipoProducto, ReactElement> = {
   ),
 };
 
-export function ImagenProducto({ url, tipo, nombre, className = '' }: { url: string | null; tipo: TipoProducto; nombre: string; className?: string }) {
+/** Versión reducida de una foto de Cloudinary (la genera al vuelo, en el formato más liviano para el navegador). */
+export function miniatura(url: string, ancho: number) {
+  return url.includes('res.cloudinary.com') && url.includes('/upload/') ? url.replace('/upload/', `/upload/c_limit,w_${ancho},f_auto,q_auto/`) : url;
+}
+
+export function ImagenProducto({
+  url,
+  tipo,
+  nombre,
+  className = '',
+  ancho = 600,
+}: {
+  url: string | null;
+  tipo: TipoProducto;
+  nombre: string;
+  className?: string;
+  /** Ancho en píxeles que se pide a Cloudinary. */
+  ancho?: number;
+}) {
   const [fallo, setFallo] = useState(false);
   if (url && !fallo) {
-    return <img className={`imagen-producto ${className}`} src={url} alt={nombre} loading="lazy" onError={() => setFallo(true)} />;
+    return <img className={`imagen-producto ${className}`} src={miniatura(url, ancho)} alt={nombre} loading="lazy" onError={() => setFallo(true)} />;
   }
   return (
     <div className={`imagen-producto sin-foto ${className}`} role="img" aria-label={nombre}>

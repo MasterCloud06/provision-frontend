@@ -825,7 +825,7 @@ select:focus {
 
 .imagen-producto {
   width: 100%;
-  object-fit: cover;
+  object-fit: contain;
   background: var(--fondo-imagen);
 }
 

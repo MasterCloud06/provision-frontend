@@ -73,7 +73,7 @@ export function Producto() {
 
       <div className="producto">
         <div className="producto-imagen">
-          <ImagenProducto url={p.imagenUrl} tipo={p.tipo} nombre={p.nombre} />
+          <ImagenProducto url={p.imagenUrl} tipo={p.tipo} nombre={p.nombre} ancho={1200} />
         </div>
 
         <div className="producto-info">

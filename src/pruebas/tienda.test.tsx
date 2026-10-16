@@ -86,3 +86,11 @@ describe('carrito de visitante', () => {
     expect((screen.getByRole('button', { name: 'Agregar al carrito' }) as HTMLButtonElement).disabled).toBe(true);
   });
 });
+
+describe('fotos', () => {
+  it('pide a Cloudinary una versión reducida y deja intactas otras URLs', async () => {
+    const { miniatura } = await import('../componentes/ImagenProducto');
+    expect(miniatura('https://res.cloudinary.com/x/image/upload/v1/p.jpg', 600)).toBe('https://res.cloudinary.com/x/image/upload/c_limit,w_600,f_auto,q_auto/v1/p.jpg');
+    expect(miniatura('https://otra.web/p.jpg', 600)).toBe('https://otra.web/p.jpg');
+  });
+});
