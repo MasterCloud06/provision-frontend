@@ -21,7 +21,7 @@ function Buscador({ alBuscar }: { alBuscar?: () => void }) {
   const navegar = useNavigate();
   const [params] = useSearchParams();
   const [q, setQ] = useState(params.get('q') ?? '');
-  useEffect(() => setQ(params.get('q') ?? ''), [params]);
+  useEffect(() => { setQ(params.get('q') ?? ''); }, [params]);
   const enviar = (e: FormEvent) => {
     e.preventDefault();
     navegar(q.trim() ? `/catalogo?q=${encodeURIComponent(q.trim())}` : '/catalogo');
@@ -56,7 +56,7 @@ function Encabezado() {
   const { cuenta } = useSesion();
   const [menu, setMenu] = useState(false);
   const { pathname, search } = useLocation();
-  useEffect(() => setMenu(false), [pathname, search]);
+  useEffect(() => { setMenu(false); }, [pathname, search]);
 
   return (
     <header className="encabezado">
@@ -170,7 +170,7 @@ function Pie() {
 
 export function Marco() {
   const { pathname } = useLocation();
-  useEffect(() => window.scrollTo(0, 0), [pathname]);
+  useEffect(() => { window.scrollTo(0, 0); }, [pathname]);
   return (
     <>
       <a href="#contenido" className="saltar">

@@ -77,7 +77,7 @@ export function Citas() {
     tienda.disponibilidad(undefined, 14).then(setDisp).catch(setError);
     if (cuenta) tienda.citas().then(setMias).catch(() => undefined);
   };
-  useEffect(cargar, [cuenta]);
+  useEffect(() => { cargar(); }, [cuenta]);
   useEffect(() => {
     if (cuenta?.telefono && !telefono) setTelefono(cuenta.telefono);
   }, [cuenta, telefono]);

@@ -12,7 +12,7 @@ export function MisPedidos() {
     setError(null);
     tienda.pedidos().then(setPedidos).catch(setError);
   };
-  useEffect(cargar, []);
+  useEffect(() => { cargar(); }, []);
 
   if (error) return <div className="contenedor"><MensajeError error={error} reintentar={cargar} /></div>;
   if (!pedidos) return <div className="contenedor"><Cargando texto="Cargando tus pedidos…" /></div>;

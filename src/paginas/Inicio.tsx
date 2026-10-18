@@ -85,7 +85,7 @@ function Novedades() {
       .then((r) => setProductos(r.datos))
       .catch(setError);
   };
-  useEffect(cargar, []);
+  useEffect(() => { cargar(); }, []);
 
   return (
     <section className="contenedor bloque" aria-labelledby="titulo-novedades">

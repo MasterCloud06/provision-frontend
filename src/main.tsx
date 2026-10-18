@@ -2,6 +2,7 @@ import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { BrowserRouter } from 'react-router';
 import { App } from './App';
+import { ErrorGeneral } from './componentes/ErrorGeneral';
 import { ProveedorAvisos } from './estado/Avisos';
 import { ProveedorCarrito } from './estado/Carrito';
 import { ProveedorInfo } from './estado/Info';
@@ -10,6 +11,7 @@ import './estilos.css';
 
 createRoot(document.getElementById('raiz')!).render(
   <StrictMode>
+    <ErrorGeneral>
     <BrowserRouter basename={import.meta.env.BASE_URL.replace(/\/$/, '')}>
       <ProveedorAvisos>
         <ProveedorInfo>
@@ -21,5 +23,6 @@ createRoot(document.getElementById('raiz')!).render(
         </ProveedorInfo>
       </ProveedorAvisos>
     </BrowserRouter>
+    </ErrorGeneral>
   </StrictMode>,
 );

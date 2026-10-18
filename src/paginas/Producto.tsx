@@ -27,7 +27,7 @@ export function Producto() {
     setCantidad(1);
     tienda.producto(id!).then(setP).catch(setError);
   };
-  useEffect(cargar, [id]);
+  useEffect(() => { cargar(); }, [id]);
 
   if (error instanceof ErrorApi && error.status === 404) {
     return (
