@@ -1,3 +1,4 @@
+import { API_URL } from "../api/cliente";
 import type { ReactElement } from "react";
 import { useState } from 'react';
 import type { TipoProducto } from '../api/tipos';
@@ -52,9 +53,9 @@ const DIBUJOS: Record<TipoProducto, ReactElement> = {
   ),
 };
 
-/** Versión reducida de una foto de Cloudinary (la genera al vuelo, en el formato más liviano para el navegador). */
-export function miniatura(url: string, ancho: number) {
-  return url.includes('res.cloudinary.com') && url.includes('/upload/') ? url.replace('/upload/', `/upload/c_limit,w_${ancho},f_auto,q_auto/`) : url;
+/** Resuelve exclusivamente rutas de fotos administradas por ENAI. */
+export function miniatura(url: string, _ancho: number) {
+  return /^imagenes\/[a-f0-9-]+(?:\?v=[a-f0-9]+)?$/i.test(url) ? `${API_URL}/${url}` : '';
 }
 
 export function ImagenProducto({
@@ -68,12 +69,13 @@ export function ImagenProducto({
   tipo: TipoProducto;
   nombre: string;
   className?: string;
-  /** Ancho en píxeles que se pide a Cloudinary. */
+  /** Ancho previsto para la imagen. */
   ancho?: number;
 }) {
-  const [fallo, setFallo] = useState(false);
-  if (url && !fallo) {
-    return <img className={`imagen-producto ${className}`} src={miniatura(url, ancho)} alt={nombre} loading="lazy" onError={() => setFallo(true)} />;
+  const [fallo, setFallo] = useState<string | null>(null);
+  const resuelta = url ? miniatura(url, ancho) : null;
+  if (resuelta && fallo !== resuelta) {
+    return <img className={`imagen-producto ${className}`} src={resuelta} alt={nombre} loading="lazy" onError={() => setFallo(resuelta)} />;
   }
   return (
     <div className={`imagen-producto sin-foto ${className}`} role="img" aria-label={nombre}>
