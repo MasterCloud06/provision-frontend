@@ -88,9 +88,12 @@ describe('carrito de visitante', () => {
 });
 
 describe('fotos', () => {
-  it('pide a Cloudinary una versión reducida y deja intactas otras URLs', async () => {
+  it('resuelve rutas de ENAI y rechaza hosts externos', async () => {
     const { miniatura } = await import('../componentes/ImagenProducto');
-    expect(miniatura('https://res.cloudinary.com/x/image/upload/v1/p.jpg', 600)).toBe('https://res.cloudinary.com/x/image/upload/c_limit,w_600,f_auto,q_auto/v1/p.jpg');
-    expect(miniatura('https://otra.web/p.jpg', 600)).toBe('https://otra.web/p.jpg');
+    const { API_URL } = await import('../api/cliente');
+    expect(miniatura('imagenes/1234-abcd?v=abc', 600)).toBe(`${API_URL}/imagenes/1234-abcd?v=abc`);
+    expect(miniatura('https://otra.web/p.jpg', 600)).toBe('');
+    expect(miniatura('//otra.web/p.jpg', 600)).toBe('');
+    expect(miniatura('imagenes/../secreto', 600)).toBe('');
   });
 });

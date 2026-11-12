@@ -1,5 +1,5 @@
 /** Dirección de la API. Se define en .env.development / .env.production (VITE_API_URL). */
-export const API_URL = (import.meta.env.VITE_API_URL ?? 'http://localhost:3000/api/v1').replace(/\/+$/, '');
+export const API_URL = (import.meta.env.VITE_API_URL ?? 'http://localhost:5080/api/optica/provision/v1').replace(/\/+$/, '');
 
 const CLAVE_TOKEN = 'provision.token';
 
